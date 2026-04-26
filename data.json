@@ -1,70 +1,215 @@
 {
-  "updated_at": "26.04.2026 12:49",
+  "updated_at": "26.04.2026 13:08",
   "containers": [
     {
       "name": "UAE#4",
       "status": "Доставлен",
       "ship_plan": "2026-01-01",
       "ship_fact": "2026-01-25",
+      "arrival_plan": "2026-02-20",
+      "arrival_fact": "2026-02-20",
       "customs_plan": "2026-02-25",
       "customs_fact": "2026-03-15",
       "warehouse_plan": "2026-03-10",
       "warehouse_fact": "2026-03-20",
       "delays": {},
       "fpz_url": null,
-      "ffz_url": "files/UAE_004_ФФЗ_ФИНАЛ_15_03_2026.xlsx"
+      "ffz_url": "files/UAE_004_ФФЗ_ФИНАЛ_15_03_2026.xlsx",
+      "items": []
     },
     {
       "name": "UAE#5",
       "status": "В пути",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
+      "arrival_plan": "2026-04-27",
+      "arrival_fact": null,
       "customs_plan": "2026-04-29",
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_005_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_25.04.2026.xlsx",
-      "ffz_url": null
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "0450000115",
+          "brand": "Hyundai/Kia",
+          "name": "HYUNDAI ATF SP-IV (1л) 0450000115 Масло трансмиссионное, шт",
+          "qty": 12096
+        },
+        {
+          "art": "A000989671013FBDW",
+          "brand": "MERSEDES-BENZ",
+          "name": "MERCEDES-BENZ Genuine MB 229.52 5W-30",
+          "qty": 600
+        },
+        {
+          "art": "A000989681013FSEW",
+          "brand": "MERSEDES-BENZ",
+          "name": "MERCEDES-BENZ Genuine MB 229.5 5W-40",
+          "qty": 240
+        },
+        {
+          "art": "A000989681011FSEW",
+          "brand": "MERSEDES-BENZ",
+          "name": "MERCEDES-BENZ Genuine MB 229.5 5W-40",
+          "qty": 720
+        },
+        {
+          "art": "83212465843",
+          "brand": "BMW",
+          "name": "Моторное масло BMW TwinPower Turbo Longlife-01 5W-30 кан. 1л",
+          "qty": 5184
+        },
+        {
+          "art": "MZ321232",
+          "brand": "Mitsubishi",
+          "name": "ENG OIL 5W30 (SN) FS (MZ320864)",
+          "qty": 144
+        },
+        {
+          "art": "MZ321233",
+          "brand": "Mitsubishi",
+          "name": "ENG OIL 5W30 (SN) FS (MZ320863)",
+          "qty": 144
+        },
+        {
+          "art": "0888602905",
+          "brand": "Toyota",
+          "name": "CVT Flued TC",
+          "qty": 576
+        }
+      ]
     },
     {
       "name": "UAE#6",
       "status": "В пути",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
+      "arrival_plan": "2026-04-27",
+      "arrival_fact": null,
       "customs_plan": "2026-04-29",
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_006_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_09.04.2026.xlsx",
-      "ffz_url": null
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "MZ321233",
+          "brand": "MITSUBISHI",
+          "name": "SP / GF-6A 5W-30",
+          "qty": 360
+        },
+        {
+          "art": "0450000115",
+          "brand": "HYUNDAI / KIA",
+          "name": "SP-IV",
+          "qty": 17136
+        },
+        {
+          "art": "83212465843",
+          "brand": "BMW",
+          "name": "TwinPower Turbo LL-01 5W-30",
+          "qty": 5208
+        },
+        {
+          "art": "83135A82511",
+          "brand": "BMW",
+          "name": "Brake Fluid DOT4",
+          "qty": 348
+        },
+        {
+          "art": "83225A4F016",
+          "brand": "BMW",
+          "name": "DTF-I",
+          "qty": 192
+        },
+        {
+          "art": "MZ321232",
+          "brand": "MITSUBISHI",
+          "name": "SP / GF-6A 5W-30",
+          "qty": 396
+        }
+      ]
     },
     {
       "name": "UAE#7",
       "status": "Ожидает отправки",
       "ship_plan": "2026-05-01",
       "ship_fact": null,
+      "arrival_plan": null,
+      "arrival_fact": null,
       "customs_plan": null,
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_007_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
-      "ffz_url": null
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "0888681885",
+          "brand": "TOYOTA",
+          "name": "ATF WS",
+          "qty": 4000
+        },
+        {
+          "art": "601429774",
+          "brand": "FUCSH",
+          "name": "Total CHF 11S",
+          "qty": 0
+        },
+        {
+          "art": "83212465843",
+          "brand": "BMW",
+          "name": "TwinPower Turbo LL-01 5W-30",
+          "qty": 4292
+        },
+        {
+          "art": "A000989330913ABDW",
+          "brand": "MERSEDES-BENZ",
+          "name": "229.52",
+          "qty": 240
+        },
+        {
+          "art": "0450000115",
+          "brand": "Hyundai/Kia",
+          "name": "HYUNDAI ATF SP-IV",
+          "qty": null
+        },
+        {
+          "art": "0888681885",
+          "brand": "Toyota",
+          "name": "ATF WS",
+          "qty": 1142
+        }
+      ]
     },
     {
       "name": "UAE#8",
       "status": "Ожидает отправки",
       "ship_plan": "2026-04-28",
       "ship_fact": null,
+      "arrival_plan": null,
+      "arrival_fact": null,
       "customs_plan": null,
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_008_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
-      "ffz_url": null
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "0888681885",
+          "brand": "TOYOTA",
+          "name": "ATF WS",
+          "qty": 6192
+        }
+      ]
     }
   ]
 }

@@ -6,130 +6,58 @@
   <title>PartsAvenue — Трекинг контейнеров</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f0f2f5;
-      color: #1a1a2e;
-      min-height: 100vh;
-    }
-
-    header {
-      background: #1a1a2e;
-      color: white;
-      padding: 14px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    header { background: #1a1a2e; color: white; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; }
     header h1 { font-size: 16px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; }
     .updated { font-size: 12px; color: #6b7a90; }
 
-    .tabs-bar {
-      padding: 20px 28px 0;
-      display: flex;
-      gap: 4px;
-    }
-    .tab {
-      padding: 9px 22px;
-      border: none;
-      border-radius: 8px 8px 0 0;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      background: #dde2ea;
-      color: #666;
-      transition: background 0.15s;
-    }
+    .tabs-bar { padding: 20px 28px 0; display: flex; gap: 4px; }
+    .tab { padding: 9px 22px; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-size: 13px; font-weight: 500; background: #dde2ea; color: #666; transition: background 0.15s; }
     .tab.active { background: white; color: #1a1a2e; font-weight: 600; }
 
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
-      padding: 20px 28px 40px;
-    }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; padding: 20px 28px 40px; }
 
-    .card {
-      background: white;
-      border-radius: 0 10px 10px 10px;
-      padding: 20px;
-      border: 1px solid #e4e8f0;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
+    .card { background: white; border-radius: 0 10px 10px 10px; padding: 20px; border: 1px solid #e4e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
     .card-name { font-size: 20px; font-weight: 700; }
 
-    .badge {
-      padding: 4px 11px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-    }
+    .badge { padding: 4px 11px; border-radius: 20px; font-size: 12px; font-weight: 600; }
     .badge-waiting   { background: #f0f0f0; color: #888; }
     .badge-transit   { background: #e3f2fd; color: #1565c0; }
+    .badge-arrived   { background: #ede7f6; color: #4527a0; }
     .badge-customs   { background: #fff3e0; color: #e65100; }
     .badge-delivered { background: #e8f5e9; color: #2e7d32; }
 
-    .milestones { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-
-    .milestone {
-      padding: 9px 12px;
-      border-radius: 7px;
-      background: #f7f9fb;
-    }
-    .milestone-label {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: #99a0ad;
-      margin-bottom: 5px;
-    }
+    .milestones { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .milestone { padding: 9px 12px; border-radius: 7px; background: #f7f9fb; }
+    .milestone-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #99a0ad; margin-bottom: 5px; }
     .milestone-row { display: flex; gap: 18px; }
     .m-item { font-size: 13px; }
     .m-item .lbl { color: #aaa; }
     .m-item .val { font-weight: 500; }
     .m-item .val.done { color: #2e7d32; }
     .m-item .val.empty { color: #d0d5dd; }
-    .delay-tag {
-      margin-top: 5px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #c62828;
-    }
+    .delay-tag { margin-top: 5px; font-size: 12px; font-weight: 600; color: #c62828; }
 
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
-    .btn {
-      padding: 7px 15px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: opacity 0.15s;
-    }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .btn { padding: 7px 15px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: opacity 0.15s; }
     .btn:hover { opacity: 0.8; }
     .btn-fpz { background: #e3f2fd; color: #1565c0; }
     .btn-ffz { background: #e8f5e9; color: #2e7d32; }
+    .btn-toggle { background: #f5f5f5; color: #555; font-size: 12px; padding: 5px 12px; }
 
-    .empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 60px 20px;
-      color: #bbb;
-      font-size: 15px;
-    }
+    /* Состав */
+    .items-section { display: none; margin-top: 8px; border-top: 1px solid #eee; padding-top: 10px; }
+    .items-section.open { display: block; }
+    .items-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .items-table th { text-align: left; padding: 5px 6px; color: #999; font-weight: 600; border-bottom: 1px solid #eee; text-transform: uppercase; font-size: 10px; letter-spacing: 0.4px; }
+    .items-table td { padding: 5px 6px; border-bottom: 1px solid #f5f5f5; vertical-align: top; }
+    .items-table tr:last-child td { border-bottom: none; }
+    .items-count { font-size: 11px; color: #aaa; margin-top: 6px; text-align: right; }
+
+    .empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #bbb; font-size: 15px; }
   </style>
 </head>
 <body>
@@ -159,8 +87,9 @@
   function badge(status) {
     const map = {
       'Доставлен':        ['badge-delivered', '&#10003; Доставлен'],
-      'В пути':           ['badge-transit',   '&#128674; В пути'],
       'На таможне':       ['badge-customs',   '&#128083; На таможне'],
+      'Прибыл':           ['badge-arrived',   '&#9875; Прибыл'],
+      'В пути':           ['badge-transit',   '&#128674; В пути'],
       'Ожидает отправки': ['badge-waiting',   '&#8987; Ожидает'],
     };
     const [cls, label] = map[status] || ['badge-waiting', status];
@@ -174,6 +103,34 @@
 
   function delayTag(days) {
     return days ? `<div class="delay-tag">&#9888; Задержка ${days} дн.</div>` : '';
+  }
+
+  function itemsSection(c) {
+    if (!c.items || c.items.length === 0) return '';
+    const id = 'items-' + c.name.replace('#', '');
+    const rows = c.items.map(it => `
+      <tr>
+        <td>${it.art}</td>
+        <td>${it.brand}</td>
+        <td>${it.name}</td>
+        <td style="text-align:right">${it.qty ?? '—'}</td>
+      </tr>`).join('');
+    return `
+      <div>
+        <button class="btn btn-toggle" onclick="toggleItems('${id}', this)">&#9660; Состав (${c.items.length} поз.)</button>
+        <div class="items-section" id="${id}">
+          <table class="items-table">
+            <thead><tr><th>Артикул</th><th>Бренд</th><th>Наименование</th><th style="text-align:right">Кол-во</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+
+  function toggleItems(id, btn) {
+    const el = document.getElementById(id);
+    const open = el.classList.toggle('open');
+    btn.innerHTML = (open ? '&#9650;' : '&#9660;') + btn.innerHTML.slice(1);
   }
 
   function card(c) {
@@ -196,6 +153,14 @@
             ${delayTag(c.delays?.ship)}
           </div>
           <div class="milestone">
+            <div class="milestone-label">Прибытие</div>
+            <div class="milestone-row">
+              ${mItem('план', c.arrival_plan, false)}
+              ${mItem('факт', c.arrival_fact, true)}
+            </div>
+            ${delayTag(c.delays?.arrival)}
+          </div>
+          <div class="milestone">
             <div class="milestone-label">Таможня</div>
             <div class="milestone-row">
               ${mItem('план', c.customs_plan, false)}
@@ -213,6 +178,7 @@
           </div>
         </div>
         <div class="actions">${fpz}${ffz}</div>
+        ${itemsSection(c)}
       </div>`;
   }
 
