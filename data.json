@@ -1,0 +1,70 @@
+{
+  "updated_at": "26.04.2026 12:49",
+  "containers": [
+    {
+      "name": "UAE#4",
+      "status": "Доставлен",
+      "ship_plan": "2026-01-01",
+      "ship_fact": "2026-01-25",
+      "customs_plan": "2026-02-25",
+      "customs_fact": "2026-03-15",
+      "warehouse_plan": "2026-03-10",
+      "warehouse_fact": "2026-03-20",
+      "delays": {},
+      "fpz_url": null,
+      "ffz_url": "files/UAE_004_ФФЗ_ФИНАЛ_15_03_2026.xlsx"
+    },
+    {
+      "name": "UAE#5",
+      "status": "В пути",
+      "ship_plan": "2026-04-03",
+      "ship_fact": "2026-04-03",
+      "customs_plan": "2026-04-29",
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_005_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_25.04.2026.xlsx",
+      "ffz_url": null
+    },
+    {
+      "name": "UAE#6",
+      "status": "В пути",
+      "ship_plan": "2026-04-03",
+      "ship_fact": "2026-04-03",
+      "customs_plan": "2026-04-29",
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_006_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_09.04.2026.xlsx",
+      "ffz_url": null
+    },
+    {
+      "name": "UAE#7",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-05-01",
+      "ship_fact": null,
+      "customs_plan": null,
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_007_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
+      "ffz_url": null
+    },
+    {
+      "name": "UAE#8",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-04-28",
+      "ship_fact": null,
+      "customs_plan": null,
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_008_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
+      "ffz_url": null
+    }
+  ]
+}

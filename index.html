@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PartsAvenue — Трекинг контейнеров</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 { font-size: 16px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; }
+    .updated { font-size: 12px; color: #6b7a90; }
+
+    .tabs-bar {
+      padding: 20px 28px 0;
+      display: flex;
+      gap: 4px;
+    }
+    .tab {
+      padding: 9px 22px;
+      border: none;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      background: #dde2ea;
+      color: #666;
+      transition: background 0.15s;
+    }
+    .tab.active { background: white; color: #1a1a2e; font-weight: 600; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      padding: 20px 28px 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 0 10px 10px 10px;
+      padding: 20px;
+      border: 1px solid #e4e8f0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .card-name { font-size: 20px; font-weight: 700; }
+
+    .badge {
+      padding: 4px 11px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-waiting   { background: #f0f0f0; color: #888; }
+    .badge-transit   { background: #e3f2fd; color: #1565c0; }
+    .badge-customs   { background: #fff3e0; color: #e65100; }
+    .badge-delivered { background: #e8f5e9; color: #2e7d32; }
+
+    .milestones { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+
+    .milestone {
+      padding: 9px 12px;
+      border-radius: 7px;
+      background: #f7f9fb;
+    }
+    .milestone-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #99a0ad;
+      margin-bottom: 5px;
+    }
+    .milestone-row { display: flex; gap: 18px; }
+    .m-item { font-size: 13px; }
+    .m-item .lbl { color: #aaa; }
+    .m-item .val { font-weight: 500; }
+    .m-item .val.done { color: #2e7d32; }
+    .m-item .val.empty { color: #d0d5dd; }
+    .delay-tag {
+      margin-top: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #c62828;
+    }
+
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+    .btn {
+      padding: 7px 15px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.8; }
+    .btn-fpz { background: #e3f2fd; color: #1565c0; }
+    .btn-ffz { background: #e8f5e9; color: #2e7d32; }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: #bbb;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>PartsAvenue &mdash; Трекинг контейнеров</h1>
+  <span class="updated" id="updated">Загрузка...</span>
+</header>
+
+<div class="tabs-bar">
+  <button class="tab active" id="tab-active" onclick="showTab('active')">Активные <span id="cnt-active"></span></button>
+  <button class="tab" id="tab-done" onclick="showTab('done')">Завершённые <span id="cnt-done"></span></button>
+</div>
+
+<div class="cards-grid" id="grid"></div>
+
+<script>
+  let all = [];
+  let tab = 'active';
+
+  function fmtDate(d) {
+    if (!d) return null;
+    const [y, m, day] = d.split('-');
+    return `${day}.${m}.${y}`;
+  }
+
+  function badge(status) {
+    const map = {
+      'Доставлен':        ['badge-delivered', '&#10003; Доставлен'],
+      'В пути':           ['badge-transit',   '&#128674; В пути'],
+      'На таможне':       ['badge-customs',   '&#128083; На таможне'],
+      'Ожидает отправки': ['badge-waiting',   '&#8987; Ожидает'],
+    };
+    const [cls, label] = map[status] || ['badge-waiting', status];
+    return `<span class="badge ${cls}">${label}</span>`;
+  }
+
+  function mItem(label, val, done) {
+    const cls = val ? (done ? 'done' : '') : 'empty';
+    return `<div class="m-item"><span class="lbl">${label}: </span><span class="val ${cls}">${val ? fmtDate(val) : '—'}</span></div>`;
+  }
+
+  function delayTag(days) {
+    return days ? `<div class="delay-tag">&#9888; Задержка ${days} дн.</div>` : '';
+  }
+
+  function card(c) {
+    const fpz = c.fpz_url ? `<a class="btn btn-fpz" href="${c.fpz_url}" download>&#128196; ФПЗ</a>` : '';
+    const ffz = c.ffz_url ? `<a class="btn btn-ffz" href="${c.ffz_url}" download>&#128203; ФФЗ</a>` : '';
+
+    return `
+      <div class="card">
+        <div class="card-header">
+          <span class="card-name">${c.name}</span>
+          ${badge(c.status)}
+        </div>
+        <div class="milestones">
+          <div class="milestone">
+            <div class="milestone-label">Отправка</div>
+            <div class="milestone-row">
+              ${mItem('план', c.ship_plan, false)}
+              ${mItem('факт', c.ship_fact, true)}
+            </div>
+            ${delayTag(c.delays?.ship)}
+          </div>
+          <div class="milestone">
+            <div class="milestone-label">Таможня</div>
+            <div class="milestone-row">
+              ${mItem('план', c.customs_plan, false)}
+              ${mItem('факт', c.customs_fact, true)}
+            </div>
+            ${delayTag(c.delays?.customs)}
+          </div>
+          <div class="milestone">
+            <div class="milestone-label">Склад</div>
+            <div class="milestone-row">
+              ${mItem('план', c.warehouse_plan, false)}
+              ${mItem('факт', c.warehouse_fact, true)}
+            </div>
+            ${delayTag(c.delays?.warehouse)}
+          </div>
+        </div>
+        <div class="actions">${fpz}${ffz}</div>
+      </div>`;
+  }
+
+  function showTab(t) {
+    tab = t;
+    document.getElementById('tab-active').classList.toggle('active', t === 'active');
+    document.getElementById('tab-done').classList.toggle('active', t === 'done');
+    render();
+  }
+
+  function render() {
+    const list = all.filter(c => tab === 'active' ? c.status !== 'Доставлен' : c.status === 'Доставлен');
+    document.getElementById('grid').innerHTML = list.length
+      ? list.map(card).join('')
+      : '<div class="empty">Нет контейнеров в этом разделе</div>';
+  }
+
+  fetch('data.json')
+    .then(r => r.json())
+    .then(data => {
+      all = data.containers;
+      document.getElementById('updated').textContent = 'Обновлено: ' + data.updated_at;
+      document.getElementById('cnt-active').textContent = '(' + all.filter(c => c.status !== 'Доставлен').length + ')';
+      document.getElementById('cnt-done').textContent   = '(' + all.filter(c => c.status === 'Доставлен').length + ')';
+      render();
+    })
+    .catch(() => {
+      document.getElementById('grid').innerHTML = '<div class="empty">Не удалось загрузить данные</div>';
+      document.getElementById('updated').textContent = 'Ошибка загрузки';
+    });
+</script>
+
+</body>
+</html>
