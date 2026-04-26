@@ -51,11 +51,16 @@
     /* Состав */
     .items-section { display: none; margin-top: 8px; border-top: 1px solid #eee; padding-top: 10px; }
     .items-section.open { display: block; }
-    .items-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    .items-table th { text-align: left; padding: 5px 6px; color: #999; font-weight: 600; border-bottom: 1px solid #eee; text-transform: uppercase; font-size: 10px; letter-spacing: 0.4px; }
-    .items-table td { padding: 5px 6px; border-bottom: 1px solid #f5f5f5; vertical-align: top; }
-    .items-table tr:last-child td { border-bottom: none; }
-    .items-count { font-size: 11px; color: #aaa; margin-top: 6px; text-align: right; }
+    .items-header { display: flex; gap: 0; padding: 0 4px 4px; border-bottom: 1px solid #eee; margin-bottom: 2px; }
+    .items-header span { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.4px; }
+    .items-header .h-art   { flex: 1; min-width: 0; }
+    .items-header .h-brand { width: 90px; }
+    .items-header .h-qty   { width: 48px; text-align: right; }
+    .item-row { display: flex; align-items: center; padding: 4px 4px; border-bottom: 1px solid #f5f5f5; }
+    .item-row:last-child { border-bottom: none; }
+    .item-art   { flex: 1; min-width: 0; font-size: 12px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1a1a2e; }
+    .item-brand { width: 90px; font-size: 11px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .item-qty   { width: 48px; font-size: 12px; font-weight: 600; text-align: right; color: #444; }
 
     .empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #bbb; font-size: 15px; }
   </style>
@@ -109,20 +114,21 @@
     if (!c.items || c.items.length === 0) return '';
     const id = 'items-' + c.name.replace('#', '');
     const rows = c.items.map(it => `
-      <tr>
-        <td>${it.art}</td>
-        <td>${it.brand}</td>
-        <td>${it.name}</td>
-        <td style="text-align:right">${it.qty ?? '—'}</td>
-      </tr>`).join('');
+      <div class="item-row">
+        <span class="item-art" title="${it.art}">${it.art}</span>
+        <span class="item-brand" title="${it.brand}">${it.brand}</span>
+        <span class="item-qty">${it.qty != null ? it.qty.toLocaleString('ru') : '—'}</span>
+      </div>`).join('');
     return `
       <div>
         <button class="btn btn-toggle" onclick="toggleItems('${id}', this)">&#9660; Состав (${c.items.length} поз.)</button>
         <div class="items-section" id="${id}">
-          <table class="items-table">
-            <thead><tr><th>Артикул</th><th>Бренд</th><th>Наименование</th><th style="text-align:right">Кол-во</th></tr></thead>
-            <tbody>${rows}</tbody>
-          </table>
+          <div class="items-header">
+            <span class="h-art">Артикул</span>
+            <span class="h-brand">Бренд</span>
+            <span class="h-qty">Кол-во</span>
+          </div>
+          ${rows}
         </div>
       </div>`;
   }

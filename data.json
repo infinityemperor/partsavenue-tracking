@@ -1,5 +1,5 @@
 {
-  "updated_at": "26.04.2026 13:08",
+  "updated_at": "26.04.2026 13:13",
   "containers": [
     {
       "name": "UAE#4",
@@ -15,7 +15,50 @@
       "delays": {},
       "fpz_url": null,
       "ffz_url": "files/UAE_004_ФФЗ_ФИНАЛ_15_03_2026.xlsx",
-      "items": []
+      "items": [
+        {
+          "art": "0450000115",
+          "brand": "Hyundai/Kia",
+          "name": "HYUNDAI ATF SP-IV (1л) 0450000115 Масло трансмиссионное, шт",
+          "qty": 11088
+        },
+        {
+          "art": "A000989671011FBDW",
+          "brand": "MERSEDES-BENZ",
+          "name": "MERCEDES-BENZ Genuine MB 229.52 5W-30",
+          "qty": 1440
+        },
+        {
+          "art": "83212465843",
+          "brand": "BMW",
+          "name": "Моторное масло BMW TwinPower Turbo Longlife-01 5W-30 кан. 1л",
+          "qty": 5184
+        },
+        {
+          "art": "MZ321232",
+          "brand": "Mitsubishi",
+          "name": "ENG OIL 5W30 (SN) FS (MZ320864)",
+          "qty": 576
+        },
+        {
+          "art": "MZ321233",
+          "brand": "Mitsubishi",
+          "name": "ENG OIL 5W30 (SN) FS (MZ320863)",
+          "qty": 1440
+        },
+        {
+          "art": "4024610",
+          "brand": "Mitsubishi",
+          "name": "MITSUBISHI ATF SP-III",
+          "qty": 720
+        },
+        {
+          "art": "601429774",
+          "brand": "Fucsh",
+          "name": "Total CHF 11S",
+          "qty": 600
+        }
+      ]
     },
     {
       "name": "UAE#5",

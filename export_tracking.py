@@ -180,6 +180,8 @@ def main():
             ffz = find_ffz(folder)
             if ffz:
                 ffz_url = smart_copy(ffz, FILES_DIR, file_prefix, 'ФФЗ')
+                if not items:  # нет ФПЗ — читаем состав из ФФЗ
+                    items = read_fpz_items(ffz)
 
         output.append({
             'name':           name,
