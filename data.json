@@ -1,5 +1,5 @@
 {
-  "updated_at": "26.04.2026 13:13",
+  "updated_at": "26.04.2026 13:23",
   "containers": [
     {
       "name": "UAE#4",
@@ -69,7 +69,7 @@
       "arrival_fact": null,
       "customs_plan": "2026-04-29",
       "customs_fact": null,
-      "warehouse_plan": null,
+      "warehouse_plan": "2026-05-04",
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_005_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_25.04.2026.xlsx",
@@ -134,7 +134,7 @@
       "arrival_fact": null,
       "customs_plan": "2026-04-29",
       "customs_fact": null,
-      "warehouse_plan": null,
+      "warehouse_plan": "2026-05-04",
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_006_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_09.04.2026.xlsx",
