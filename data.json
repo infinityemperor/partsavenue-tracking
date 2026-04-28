@@ -1,5 +1,5 @@
 {
-  "updated_at": "26.04.2026 13:25",
+  "updated_at": "28.04.2026 11:11",
   "containers": [
     {
       "name": "UAE#4",
@@ -62,11 +62,11 @@
     },
     {
       "name": "UAE#5",
-      "status": "В пути",
+      "status": "Прибыл",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
       "arrival_plan": "2026-04-27",
-      "arrival_fact": null,
+      "arrival_fact": "2026-04-28",
       "customs_plan": "2026-04-29",
       "customs_fact": null,
       "warehouse_plan": "2026-05-04",
@@ -127,11 +127,11 @@
     },
     {
       "name": "UAE#6",
-      "status": "В пути",
+      "status": "Прибыл",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
       "arrival_plan": "2026-04-27",
-      "arrival_fact": null,
+      "arrival_fact": "2026-04-28",
       "customs_plan": "2026-04-29",
       "customs_fact": null,
       "warehouse_plan": "2026-05-04",
@@ -150,13 +150,13 @@
           "art": "0450000115",
           "brand": "HYUNDAI / KIA",
           "name": "SP-IV",
-          "qty": 17136
+          "qty": 15120
         },
         {
           "art": "83212465843",
           "brand": "BMW",
           "name": "TwinPower Turbo LL-01 5W-30",
-          "qty": 5208
+          "qty": 3480
         },
         {
           "art": "83135A82511",
