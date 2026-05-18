@@ -7,7 +7,7 @@ import subprocess
 from datetime import datetime
 import openpyxl
 
-SVOD_PATH       = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\006 excel учет\СВОД.xlsx'
+SVOD_PATH       = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\006 excel учет\СВОД _new.xlsm'
 CONTAINERS_ROOT = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\001 containers\2026\001 UAE'
 REPO_PATH       = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\007 container tracing'
 FILES_DIR       = os.path.join(REPO_PATH, 'files')

@@ -1,5 +1,5 @@
 {
-  "updated_at": "28.04.2026 11:11",
+  "updated_at": "18.05.2026 16:31",
   "containers": [
     {
       "name": "UAE#4",
@@ -62,17 +62,19 @@
     },
     {
       "name": "UAE#5",
-      "status": "Прибыл",
+      "status": "На таможне",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
       "arrival_plan": "2026-04-27",
       "arrival_fact": "2026-04-28",
       "customs_plan": "2026-04-29",
-      "customs_fact": null,
+      "customs_fact": "2026-05-15",
       "warehouse_plan": "2026-05-04",
       "warehouse_fact": null,
-      "delays": {},
-      "fpz_url": "files/UAE_005_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_25.04.2026.xlsx",
+      "delays": {
+        "warehouse": 14
+      },
+      "fpz_url": "files/UAE_005_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_17.05.2026.xlsx",
       "ffz_url": null,
       "items": [
         {
@@ -127,16 +129,18 @@
     },
     {
       "name": "UAE#6",
-      "status": "Прибыл",
+      "status": "На таможне",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
       "arrival_plan": "2026-04-27",
       "arrival_fact": "2026-04-28",
       "customs_plan": "2026-04-29",
-      "customs_fact": null,
+      "customs_fact": "2026-05-15",
       "warehouse_plan": "2026-05-04",
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "warehouse": 14
+      },
       "fpz_url": "files/UAE_006_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_09.04.2026.xlsx",
       "ffz_url": null,
       "items": [
@@ -150,13 +154,13 @@
           "art": "0450000115",
           "brand": "HYUNDAI / KIA",
           "name": "SP-IV",
-          "qty": 15120
+          "qty": 17136
         },
         {
           "art": "83212465843",
           "brand": "BMW",
           "name": "TwinPower Turbo LL-01 5W-30",
-          "qty": 3480
+          "qty": 5208
         },
         {
           "art": "83135A82511",
@@ -180,12 +184,12 @@
     },
     {
       "name": "UAE#7",
-      "status": "Ожидает отправки",
+      "status": "В пути",
       "ship_plan": "2026-05-01",
-      "ship_fact": null,
-      "arrival_plan": null,
+      "ship_fact": "2026-05-16",
+      "arrival_plan": "2026-06-16",
       "arrival_fact": null,
-      "customs_plan": null,
+      "customs_plan": "2026-05-19",
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
@@ -221,7 +225,7 @@
           "art": "0450000115",
           "brand": "Hyundai/Kia",
           "name": "HYUNDAI ATF SP-IV",
-          "qty": null
+          "qty": 0
         },
         {
           "art": "0888681885",
@@ -233,12 +237,12 @@
     },
     {
       "name": "UAE#8",
-      "status": "Ожидает отправки",
+      "status": "В пути",
       "ship_plan": "2026-04-28",
-      "ship_fact": null,
-      "arrival_plan": null,
+      "ship_fact": "2026-05-05",
+      "arrival_plan": "2026-06-05",
       "arrival_fact": null,
-      "customs_plan": null,
+      "customs_plan": "2026-06-10",
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
@@ -247,10 +251,16 @@
       "ffz_url": null,
       "items": [
         {
-          "art": "0888681885",
+          "art": "0888681855",
           "brand": "TOYOTA",
           "name": "ATF WS",
-          "qty": 6192
+          "qty": 2880
+        },
+        {
+          "art": "0888681875",
+          "brand": "TOYOTA",
+          "name": "CVT FE",
+          "qty": 2880
         }
       ]
     }
