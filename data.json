@@ -1,5 +1,5 @@
 {
-  "updated_at": "18.05.2026 16:31",
+  "updated_at": "20.05.2026 17:12",
   "containers": [
     {
       "name": "UAE#4",
@@ -62,7 +62,7 @@
     },
     {
       "name": "UAE#5",
-      "status": "На таможне",
+      "status": "Доставлен",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
       "arrival_plan": "2026-04-27",
@@ -70,12 +70,10 @@
       "customs_plan": "2026-04-29",
       "customs_fact": "2026-05-15",
       "warehouse_plan": "2026-05-04",
-      "warehouse_fact": null,
-      "delays": {
-        "warehouse": 14
-      },
+      "warehouse_fact": "2026-05-20",
+      "delays": {},
       "fpz_url": "files/UAE_005_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_17.05.2026.xlsx",
-      "ffz_url": null,
+      "ffz_url": "files/UAE_005_ФФЗ.xlsx",
       "items": [
         {
           "art": "0450000115",
@@ -85,20 +83,20 @@
         },
         {
           "art": "A000989671013FBDW",
-          "brand": "MERSEDES-BENZ",
-          "name": "MERCEDES-BENZ Genuine MB 229.52 5W-30",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989671013FBDW|Масло моторное|MERCEDES|229.52|5W-30|Синтетическое|Германия|3x5л",
           "qty": 600
         },
         {
           "art": "A000989681013FSEW",
-          "brand": "MERSEDES-BENZ",
-          "name": "MERCEDES-BENZ Genuine MB 229.5 5W-40",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989681013FSEW|Масло моторное|MERCEDES|229.5|5W-40|Синтетическое|Германия|3x5л",
           "qty": 240
         },
         {
           "art": "A000989681011FSEW",
-          "brand": "MERSEDES-BENZ",
-          "name": "MERCEDES-BENZ Genuine MB 229.5 5W-40",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989681011FSEW|Масло моторное|MERCEDES|229.5|5W-40|Синтетическое|Германия|12x1л",
           "qty": 720
         },
         {
@@ -129,7 +127,7 @@
     },
     {
       "name": "UAE#6",
-      "status": "На таможне",
+      "status": "Доставлен",
       "ship_plan": "2026-04-03",
       "ship_fact": "2026-04-03",
       "arrival_plan": "2026-04-27",
@@ -137,12 +135,10 @@
       "customs_plan": "2026-04-29",
       "customs_fact": "2026-05-15",
       "warehouse_plan": "2026-05-04",
-      "warehouse_fact": null,
-      "delays": {
-        "warehouse": 14
-      },
+      "warehouse_fact": "2026-05-20",
+      "delays": {},
       "fpz_url": "files/UAE_006_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_09.04.2026.xlsx",
-      "ffz_url": null,
+      "ffz_url": "files/UAE_006_ФФЗ.xlsx",
       "items": [
         {
           "art": "MZ321233",
@@ -193,7 +189,9 @@
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "customs": 1
+      },
       "fpz_url": "files/UAE_007_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
       "ffz_url": null,
       "items": [
@@ -240,9 +238,9 @@
       "status": "В пути",
       "ship_plan": "2026-04-28",
       "ship_fact": "2026-05-05",
-      "arrival_plan": "2026-06-05",
+      "arrival_plan": "2026-06-30",
       "arrival_fact": null,
-      "customs_plan": "2026-06-10",
+      "customs_plan": "2026-07-02",
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
@@ -261,6 +259,45 @@
           "brand": "TOYOTA",
           "name": "CVT FE",
           "qty": 2880
+        }
+      ]
+    },
+    {
+      "name": "UAE#3",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-06-19",
+      "ship_fact": null,
+      "arrival_plan": null,
+      "arrival_fact": null,
+      "customs_plan": null,
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": null,
+      "ffz_url": null,
+      "items": []
+    },
+    {
+      "name": "UAE#9",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-05-23",
+      "ship_fact": null,
+      "arrival_plan": null,
+      "arrival_fact": null,
+      "customs_plan": null,
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE-009_ФПЗ_07.05.2026.xlsx",
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "0450000115",
+          "brand": "BMW",
+          "name": "0450000115|Масло трансмиссионное ATF|Hyundai-KIA|SP-IV|Синтетическое|ОАЭ|12x1л",
+          "qty": 25344
         }
       ]
     }
