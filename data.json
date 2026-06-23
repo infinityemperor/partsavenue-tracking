@@ -1,5 +1,5 @@
 {
-  "updated_at": "20.05.2026 17:12",
+  "updated_at": "23.06.2026 18:22",
   "containers": [
     {
       "name": "UAE#4",
@@ -180,26 +180,24 @@
     },
     {
       "name": "UAE#7",
-      "status": "В пути",
+      "status": "Прибыл",
       "ship_plan": "2026-05-01",
       "ship_fact": "2026-05-16",
       "arrival_plan": "2026-06-16",
-      "arrival_fact": null,
-      "customs_plan": "2026-05-19",
+      "arrival_fact": "2026-06-23",
+      "customs_plan": "2026-06-25",
       "customs_fact": null,
-      "warehouse_plan": null,
+      "warehouse_plan": "2026-06-28",
       "warehouse_fact": null,
-      "delays": {
-        "customs": 1
-      },
-      "fpz_url": "files/UAE_007_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
+      "delays": {},
+      "fpz_url": "files/UAE_007_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_22.06.2026.xlsx",
       "ffz_url": null,
       "items": [
         {
           "art": "0888681885",
           "brand": "TOYOTA",
           "name": "ATF WS",
-          "qty": 4000
+          "qty": 3712
         },
         {
           "art": "601429774",
@@ -217,7 +215,7 @@
           "art": "A000989330913ABDW",
           "brand": "MERSEDES-BENZ",
           "name": "229.52",
-          "qty": 240
+          "qty": 0
         },
         {
           "art": "0450000115",
@@ -238,9 +236,9 @@
       "status": "В пути",
       "ship_plan": "2026-04-28",
       "ship_fact": "2026-05-05",
-      "arrival_plan": "2026-06-30",
+      "arrival_plan": "2026-07-02",
       "arrival_fact": null,
-      "customs_plan": "2026-07-02",
+      "customs_plan": "2026-07-06",
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
@@ -264,28 +262,59 @@
     },
     {
       "name": "UAE#3",
-      "status": "Ожидает отправки",
+      "status": "В пути",
       "ship_plan": "2026-06-19",
-      "ship_fact": null,
-      "arrival_plan": null,
+      "ship_fact": "2026-06-15",
+      "arrival_plan": "2026-07-15",
       "arrival_fact": null,
       "customs_plan": null,
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
       "delays": {},
-      "fpz_url": null,
+      "fpz_url": "files/UAE-003_ФПЗ_10.06.2026.xlsx",
       "ffz_url": null,
-      "items": []
+      "items": [
+        {
+          "art": "83215B5BFA4",
+          "brand": "BMW",
+          "name": "83212465843|Масло моторное|BMW|LL-04|5W-30|Синтетическое|Германия|12x1л",
+          "qty": 19000
+        },
+        {
+          "art": "0888681885",
+          "brand": "TOYOTA",
+          "name": "ATF WS",
+          "qty": 288
+        },
+        {
+          "art": "0450000115",
+          "brand": "Hyundai/Kia",
+          "name": "HYUNDAI ATF SP-IV",
+          "qty": 984
+        },
+        {
+          "art": "0888602905",
+          "brand": "TOYOTA",
+          "name": "CVT|TOYOTA|Fluid FE",
+          "qty": 720
+        },
+        {
+          "art": "4024610",
+          "brand": "Mitsubishi",
+          "name": "Mitsubishi ATF SP-III",
+          "qty": 144
+        }
+      ]
     },
     {
       "name": "UAE#9",
-      "status": "Ожидает отправки",
+      "status": "В пути",
       "ship_plan": "2026-05-23",
-      "ship_fact": null,
-      "arrival_plan": null,
+      "ship_fact": "2026-05-26",
+      "arrival_plan": "2026-07-08",
       "arrival_fact": null,
-      "customs_plan": null,
+      "customs_plan": "2026-06-24",
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
@@ -298,6 +327,154 @@
           "brand": "BMW",
           "name": "0450000115|Масло трансмиссионное ATF|Hyundai-KIA|SP-IV|Синтетическое|ОАЭ|12x1л",
           "qty": 25344
+        }
+      ]
+    },
+    {
+      "name": "UAE#10",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-06-26",
+      "ship_fact": null,
+      "arrival_plan": null,
+      "arrival_fact": null,
+      "customs_plan": null,
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_010_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_23.06.2026.xlsx",
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "A000989671011FBDW",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989671011FBDW|Масло моторное|MERCEDES|229.52|5W-30|Синтетическое|Германия|12x1л",
+          "qty": 720
+        },
+        {
+          "art": "A000989671013FBDW",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989671013FBDW|Масло моторное|MERCEDES|229.52|5W-30|Синтетическое|Германия|3x5л",
+          "qty": 360
+        },
+        {
+          "art": "A000989681013FSEW",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989681013FSEW|Масло моторное|MERCEDES|229.5|5W-40|Синтетическое|Германия|3x5л",
+          "qty": 600
+        },
+        {
+          "art": "A000989681011FSEW",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989681011FSEW|Масло моторное|MERCEDES|229.5|5W-40|Синтетическое|Германия|12x1л",
+          "qty": 720
+        },
+        {
+          "art": "83212465843",
+          "brand": "BMW",
+          "name": "83212465843|Масло моторное|BMW|LL-01|5W-30|Синтетическое|Оман|12x1л",
+          "qty": 1152
+        },
+        {
+          "art": "MZ321232",
+          "brand": "Mitsubishi",
+          "name": "MZ321232|Масло моторное|Mitsubishi|GF-6A/SP|5W-30|Синтетическое|ОАЭ|3x4л",
+          "qty": 1440
+        },
+        {
+          "art": "83212465843",
+          "brand": "BMW",
+          "name": "83212465843|Масло моторное|BMW|LL-01|5W-30|Синтетическое|Оман|12x1л",
+          "qty": 120
+        },
+        {
+          "art": "A000989671013FBDW",
+          "brand": "MERCEDES-BENZ",
+          "name": "A000989671013FBDW|Масло моторное|MERCEDES|229.52|5W-30|Синтетическое|Германия|3x5л",
+          "qty": 240
+        },
+        {
+          "art": "83215B5BFA4",
+          "brand": "BMW",
+          "name": "83212465843|Масло моторное|BMW|LL-04|5W-30|Синтетическое|Германия|12x1л",
+          "qty": 5760
+        },
+        {
+          "art": "0888602905",
+          "brand": "TOYOTA",
+          "name": "0888602905|Масло трансмиссионное CVT|TOYOTA|Fluid FE|Синтетическое|Япония|4x4л",
+          "qty": 632
+        },
+        {
+          "art": "0450000115",
+          "brand": "MOBIS",
+          "name": "0450000115|Масло трансмиссионное ATF|Hyundai-KIA|SP-IV|Синтетическое|ОАЭ|12x1л",
+          "qty": 1440
+        },
+        {
+          "art": "MZ321233",
+          "brand": "Mitsubishi",
+          "name": "MZ321233|Масло моторное|Mitsubishi|GF-6A/SP|5W-30|Синтетическое|ОАЭ|12x1л",
+          "qty": 336
+        }
+      ]
+    },
+    {
+      "name": "UAE#11",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-07-23",
+      "ship_fact": null,
+      "arrival_plan": null,
+      "arrival_fact": null,
+      "customs_plan": null,
+      "customs_fact": null,
+      "warehouse_plan": null,
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_011_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "GS60577M4",
+          "brand": "VAG",
+          "name": "MOTOR OIL 508.00/509.00 0W-20 5 Lt",
+          "qty": 468
+        },
+        {
+          "art": "GS55502M2",
+          "brand": "VAG",
+          "name": "MOTOR OIL 502.00/505.00 5W-40 1 Lt",
+          "qty": 900
+        },
+        {
+          "art": "GS55502M4",
+          "brand": "VAG",
+          "name": "MOTOR OIL 502.00/505.00 5W-40 5 Lt",
+          "qty": 1404
+        },
+        {
+          "art": "GS60577M2",
+          "brand": "VAG",
+          "name": "MOTOR OIL 508.00/509.00 0W-20 1 Lt",
+          "qty": 1140
+        },
+        {
+          "art": "GS55545M2",
+          "brand": "VAG",
+          "name": "MOTOR OIL 504.00/507.00 0W-30 1 Lt",
+          "qty": 1140
+        },
+        {
+          "art": "GS55545M4",
+          "brand": "VAG",
+          "name": "MOTOR OIL 504.00/507.00 0W-30 5 Lt",
+          "qty": 1716
+        },
+        {
+          "art": "GS55502M9",
+          "brand": "VAG",
+          "name": "MOTOR OIL 502.00/505.00 5W-40 209 Lt",
+          "qty": 4
         }
       ]
     }
