@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>PartsAvenue — Трекинг контейнеров</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -250,7 +253,7 @@
     view.innerHTML = `<div class="board">${cols}</div>`;
   }
 
-  fetch('data.json')
+  fetch('data.json?t=' + Date.now(), { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
       all = data.containers;
