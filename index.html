@@ -16,33 +16,54 @@
     .tab { padding: 9px 22px; border: none; border-radius: 8px 8px 0 0; cursor: pointer; font-size: 13px; font-weight: 500; background: #dde2ea; color: #666; transition: background 0.15s; }
     .tab.active { background: white; color: #1a1a2e; font-weight: 600; }
 
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; padding: 20px 28px 40px; align-items: start; }
+    /* Канбан-доска */
+    .board { display: flex; gap: 14px; padding: 20px 28px 40px; align-items: flex-start; overflow-x: auto; }
+    .column { flex: 1 1 0; min-width: 270px; background: #e8ebf0; border-radius: 12px; padding: 12px; }
+    .column-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 8px 12px; }
+    .column-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; display: flex; align-items: center; gap: 7px; }
+    .column-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .column-count { font-size: 12px; font-weight: 700; color: #fff; background: #b0b8c4; border-radius: 20px; padding: 1px 9px; min-width: 22px; text-align: center; }
+    .col-waiting .column-dot { background: #98a0ad; } .col-waiting .column-count { background: #98a0ad; }
+    .col-transit .column-dot { background: #1565c0; } .col-transit .column-count { background: #1565c0; }
+    .col-arrived .column-dot { background: #4527a0; } .col-arrived .column-count { background: #4527a0; }
+    .col-customs .column-dot { background: #e65100; } .col-customs .column-count { background: #e65100; }
+    .col-empty { font-size: 12px; color: #aab2bd; text-align: center; padding: 18px 0; }
 
-    .card { background: white; border-radius: 0 10px 10px 10px; padding: 20px; border: 1px solid #e4e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    /* Сетка для завершённых */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding: 20px 28px 40px; align-items: start; }
 
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .card-name { font-size: 20px; font-weight: 700; }
+    .card { background: white; border-radius: 10px; padding: 16px; border: 1px solid #e4e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 12px; }
+    .card:last-child { margin-bottom: 0; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .card-name { font-size: 18px; font-weight: 700; }
 
-    .badge { padding: 4px 11px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
     .badge-waiting   { background: #f0f0f0; color: #888; }
     .badge-transit   { background: #e3f2fd; color: #1565c0; }
     .badge-arrived   { background: #ede7f6; color: #4527a0; }
     .badge-customs   { background: #fff3e0; color: #e65100; }
     .badge-delivered { background: #e8f5e9; color: #2e7d32; }
 
-    .milestones { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
-    .milestone { padding: 9px 12px; border-radius: 7px; background: #f7f9fb; }
-    .milestone-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #99a0ad; margin-bottom: 5px; }
-    .milestone-row { display: flex; gap: 18px; }
-    .m-item { font-size: 13px; }
-    .m-item .lbl { color: #aaa; }
-    .m-item .val { font-weight: 500; }
-    .m-item .val.done { color: #2e7d32; }
-    .m-item .val.empty { color: #d0d5dd; }
-    .delay-tag { margin-top: 5px; font-size: 12px; font-weight: 600; color: #c62828; }
+    /* Степпер */
+    .stepper { display: flex; margin: 4px 0 12px; }
+    .step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .step .dot { width: 14px; height: 14px; border-radius: 50%; background: #d6dae1; border: 2px solid #d6dae1; z-index: 1; }
+    .step::before { content: ''; position: absolute; top: 6px; right: 50%; width: 100%; height: 2px; background: #d6dae1; z-index: 0; }
+    .step:first-child::before { display: none; }
+    .step.done .dot { background: #2e7d32; border-color: #2e7d32; }
+    .step.done::before { background: #2e7d32; }
+    .step.current .dot { background: #fff; border-color: #1565c0; box-shadow: 0 0 0 3px rgba(21,101,192,.18); }
+    .step.late .dot { background: #fff; border-color: #c62828; box-shadow: 0 0 0 3px rgba(198,40,40,.15); }
+    .step-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #aab2bd; margin-top: 6px; }
+    .step-date { font-size: 10px; margin-top: 2px; font-weight: 600; }
+    .step-date.fact { color: #2e7d32; }
+    .step-date.plan { color: #b0b8c4; }
+    .step-date.late { color: #c62828; }
 
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-    .btn { padding: 7px 15px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: opacity 0.15s; }
+    .delay-tag { font-size: 12px; font-weight: 600; color: #c62828; margin-bottom: 10px; }
+
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .btn { padding: 6px 13px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: opacity 0.15s; }
     .btn:hover { opacity: 0.8; }
     .btn-fpz { background: #e3f2fd; color: #1565c0; }
     .btn-ffz { background: #e8f5e9; color: #2e7d32; }
@@ -54,13 +75,13 @@
     .items-header { display: flex; gap: 0; padding: 0 4px 4px; border-bottom: 1px solid #eee; margin-bottom: 2px; }
     .items-header span { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.4px; }
     .items-header .h-art   { flex: 1; min-width: 0; }
-    .items-header .h-brand { width: 90px; }
-    .items-header .h-qty   { width: 48px; text-align: right; }
+    .items-header .h-brand { width: 84px; }
+    .items-header .h-qty   { width: 46px; text-align: right; }
     .item-row { display: flex; align-items: center; padding: 4px 4px; border-bottom: 1px solid #f5f5f5; }
     .item-row:last-child { border-bottom: none; }
     .item-art   { flex: 1; min-width: 0; font-size: 12px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1a1a2e; }
-    .item-brand { width: 90px; font-size: 11px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .item-qty   { width: 48px; font-size: 12px; font-weight: 600; text-align: right; color: #444; }
+    .item-brand { width: 84px; font-size: 11px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .item-qty   { width: 46px; font-size: 12px; font-weight: 600; text-align: right; color: #444; }
 
     .empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #bbb; font-size: 15px; }
   </style>
@@ -77,16 +98,29 @@
   <button class="tab" id="tab-done" onclick="showTab('done')">Завершённые <span id="cnt-done"></span></button>
 </div>
 
-<div class="cards-grid" id="grid"></div>
+<div id="view"></div>
 
 <script>
   let all = [];
   let tab = 'active';
 
+  // стадии канбана (по порядку движения)
+  const STAGES = [
+    { status: 'Ожидает отправки', title: 'Ожидает', cls: 'col-waiting' },
+    { status: 'В пути',           title: 'В пути',   cls: 'col-transit' },
+    { status: 'Прибыл',           title: 'Прибыл',   cls: 'col-arrived' },
+    { status: 'На таможне',       title: 'На таможне', cls: 'col-customs' },
+  ];
+
   function fmtDate(d) {
     if (!d) return null;
     const [y, m, day] = d.split('-');
     return `${day}.${m}.${y}`;
+  }
+  function fmtShort(d) {
+    if (!d) return null;
+    const [y, m, day] = d.split('-');
+    return `${day}.${m}`;
   }
 
   function badge(status) {
@@ -101,13 +135,40 @@
     return `<span class="badge ${cls}">${label}</span>`;
   }
 
-  function mItem(label, val, done) {
-    const cls = val ? (done ? 'done' : '') : 'empty';
-    return `<div class="m-item"><span class="lbl">${label}: </span><span class="val ${cls}">${val ? fmtDate(val) : '—'}</span></div>`;
+  // компактный степпер из 4 точек
+  function stepper(c) {
+    const steps = [
+      { label: 'Отпр.',  plan: c.ship_plan,      fact: c.ship_fact,      delay: c.delays?.ship },
+      { label: 'Приб.',  plan: c.arrival_plan,   fact: c.arrival_fact,   delay: c.delays?.arrival },
+      { label: 'Там.',   plan: c.customs_plan,   fact: c.customs_fact,   delay: c.delays?.customs },
+      { label: 'Склад',  plan: c.warehouse_plan, fact: c.warehouse_fact, delay: c.delays?.warehouse },
+    ];
+    // текущий шаг = первый без факта
+    let current = steps.findIndex(s => !s.fact);
+    return '<div class="stepper">' + steps.map((s, i) => {
+      let cls = 'step';
+      if (s.fact) cls += ' done';
+      else if (i === current) cls += s.delay ? ' late' : ' current';
+      let dateHtml, dateCls, dateTxt, title = '';
+      if (s.fact) { dateCls = 'fact'; dateTxt = fmtShort(s.fact); title = 'факт: ' + fmtDate(s.fact); }
+      else if (s.delay) { dateCls = 'late'; dateTxt = fmtShort(s.plan); title = 'план: ' + fmtDate(s.plan) + ' · просрочка'; }
+      else if (s.plan) { dateCls = 'plan'; dateTxt = fmtShort(s.plan); title = 'план: ' + fmtDate(s.plan); }
+      else { dateCls = 'plan'; dateTxt = '—'; }
+      return `<div class="${cls}" title="${title}">
+                <span class="dot"></span>
+                <span class="step-label">${s.label}</span>
+                <span class="step-date ${dateCls}">${dateTxt}</span>
+              </div>`;
+    }).join('') + '</div>';
   }
 
-  function delayTag(days) {
-    return days ? `<div class="delay-tag">&#9888; Задержка ${days} дн.</div>` : '';
+  function delayTag(c) {
+    const d = c.delays || {};
+    const map = { ship: 'отправки', arrival: 'прибытия', customs: 'таможни', warehouse: 'склада' };
+    for (const k of ['ship', 'arrival', 'customs', 'warehouse']) {
+      if (d[k]) return `<div class="delay-tag">&#9888; Задержка ${d[k]} дн. (ждём ${map[k]})</div>`;
+    }
+    return '';
   }
 
   function itemsSection(c) {
@@ -142,47 +203,14 @@
   function card(c) {
     const fpz = c.fpz_url ? `<a class="btn btn-fpz" href="${c.fpz_url}" download>&#128196; ФПЗ</a>` : '';
     const ffz = c.ffz_url ? `<a class="btn btn-ffz" href="${c.ffz_url}" download>&#128203; ФФЗ</a>` : '';
-
     return `
       <div class="card">
         <div class="card-header">
           <span class="card-name">${c.name}</span>
           ${badge(c.status)}
         </div>
-        <div class="milestones">
-          <div class="milestone">
-            <div class="milestone-label">Отправка</div>
-            <div class="milestone-row">
-              ${mItem('план', c.ship_plan, false)}
-              ${mItem('факт', c.ship_fact, true)}
-            </div>
-            ${delayTag(c.delays?.ship)}
-          </div>
-          <div class="milestone">
-            <div class="milestone-label">Прибытие</div>
-            <div class="milestone-row">
-              ${mItem('план', c.arrival_plan, false)}
-              ${mItem('факт', c.arrival_fact, true)}
-            </div>
-            ${delayTag(c.delays?.arrival)}
-          </div>
-          <div class="milestone">
-            <div class="milestone-label">Таможня</div>
-            <div class="milestone-row">
-              ${mItem('план', c.customs_plan, false)}
-              ${mItem('факт', c.customs_fact, true)}
-            </div>
-            ${delayTag(c.delays?.customs)}
-          </div>
-          <div class="milestone">
-            <div class="milestone-label">Склад</div>
-            <div class="milestone-row">
-              ${mItem('план', c.warehouse_plan, false)}
-              ${mItem('факт', c.warehouse_fact, true)}
-            </div>
-            ${delayTag(c.delays?.warehouse)}
-          </div>
-        </div>
+        ${stepper(c)}
+        ${delayTag(c)}
         <div class="actions">${fpz}${ffz}</div>
         ${itemsSection(c)}
       </div>`;
@@ -196,10 +224,30 @@
   }
 
   function render() {
-    const list = all.filter(c => tab === 'active' ? c.status !== 'Доставлен' : c.status === 'Доставлен');
-    document.getElementById('grid').innerHTML = list.length
-      ? list.map(card).join('')
-      : '<div class="empty">Нет контейнеров в этом разделе</div>';
+    const view = document.getElementById('view');
+    if (tab === 'done') {
+      const list = all.filter(c => c.status === 'Доставлен');
+      view.innerHTML = `<div class="cards-grid">${
+        list.length ? list.map(card).join('') : '<div class="empty">Нет завершённых контейнеров</div>'
+      }</div>`;
+      return;
+    }
+    // канбан по стадиям
+    const cols = STAGES.map(stage => {
+      const list = all.filter(c => c.status === stage.status);
+      const cards = list.length
+        ? list.map(card).join('')
+        : '<div class="col-empty">пусто</div>';
+      return `
+        <div class="column ${stage.cls}">
+          <div class="column-head">
+            <span class="column-title"><span class="column-dot"></span>${stage.title}</span>
+            <span class="column-count">${list.length}</span>
+          </div>
+          ${cards}
+        </div>`;
+    }).join('');
+    view.innerHTML = `<div class="board">${cols}</div>`;
   }
 
   fetch('data.json')
@@ -212,7 +260,7 @@
       render();
     })
     .catch(() => {
-      document.getElementById('grid').innerHTML = '<div class="empty">Не удалось загрузить данные</div>';
+      document.getElementById('view').innerHTML = '<div class="empty">Не удалось загрузить данные</div>';
       document.getElementById('updated').textContent = 'Ошибка загрузки';
     });
 </script>
