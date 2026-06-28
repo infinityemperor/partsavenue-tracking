@@ -1,5 +1,5 @@
 {
-  "updated_at": "23.06.2026 18:22",
+  "updated_at": "28.06.2026 15:00",
   "containers": [
     {
       "name": "UAE#4",
@@ -180,14 +180,14 @@
     },
     {
       "name": "UAE#7",
-      "status": "Прибыл",
+      "status": "На таможне",
       "ship_plan": "2026-05-01",
       "ship_fact": "2026-05-16",
       "arrival_plan": "2026-06-16",
       "arrival_fact": "2026-06-23",
       "customs_plan": "2026-06-25",
-      "customs_fact": null,
-      "warehouse_plan": "2026-06-28",
+      "customs_fact": "2026-06-28",
+      "warehouse_plan": "2026-06-30",
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_007_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_22.06.2026.xlsx",
@@ -318,7 +318,9 @@
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "customs": 4
+      },
       "fpz_url": "files/UAE-009_ФПЗ_07.05.2026.xlsx",
       "ffz_url": null,
       "items": [
@@ -341,7 +343,9 @@
       "customs_fact": null,
       "warehouse_plan": null,
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "ship": 2
+      },
       "fpz_url": "files/UAE_010_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_23.06.2026.xlsx",
       "ffz_url": null,
       "items": [
@@ -475,6 +479,29 @@
           "brand": "VAG",
           "name": "MOTOR OIL 502.00/505.00 5W-40 209 Lt",
           "qty": 4
+        }
+      ]
+    },
+    {
+      "name": "UAE#12",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-07-06",
+      "ship_fact": null,
+      "arrival_plan": "2026-07-31",
+      "arrival_fact": null,
+      "customs_plan": "2026-07-03",
+      "customs_fact": null,
+      "warehouse_plan": "2026-07-05",
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE-012_ФПЗ_24.06.2026.xlsx",
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "0450000115",
+          "brand": "BMW",
+          "name": "0450000115|Масло трансмиссионное ATF|Hyundai-KIA|SP-IV|Синтетическое|ОАЭ|12x1л",
+          "qty": 24360
         }
       ]
     }
