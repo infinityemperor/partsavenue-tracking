@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.06.2026 17:42",
+  "updated_at": "30.06.2026 13:56",
   "containers": [
     {
       "name": "UAE#4",
@@ -342,7 +342,7 @@
       "warehouse_plan": null,
       "warehouse_fact": null,
       "delays": {
-        "ship": 3
+        "ship": 4
       },
       "fpz_url": "files/UAE_010_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_23.06.2026.xlsx",
       "ffz_url": null,
@@ -500,6 +500,59 @@
           "brand": "BMW",
           "name": "0450000115|Масло трансмиссионное ATF|Hyundai-KIA|SP-IV|Синтетическое|ОАЭ|12x1л",
           "qty": 24360
+        }
+      ]
+    },
+    {
+      "name": "UAE#13",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-07-13",
+      "ship_fact": null,
+      "arrival_plan": "2026-08-10",
+      "arrival_fact": null,
+      "customs_plan": "2026-08-14",
+      "customs_fact": null,
+      "warehouse_plan": "2026-08-17",
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_013_ФПЗ_30.06.2026.xlsx",
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "83215B5BFA4",
+          "brand": "BMW",
+          "name": "83215B5BFA4|Масло моторное|BMW|LL-04|5W-30|Синтетическое|Германия|12x1л",
+          "qty": 10000
+        },
+        {
+          "art": "0888681885",
+          "brand": "TOYOTA",
+          "name": "0888681885|Масло трансмиссионное ATF|TOYOTA|WS|Синтетическое|Таиланд|4x4л",
+          "qty": 1440
+        },
+        {
+          "art": "MZ321232",
+          "brand": "Mitsubishi",
+          "name": "MZ321232|Масло моторное|Mitsubishi|GF-6A/SP|5W-30|Синтетическое|ОАЭ|3x4л",
+          "qty": 1440
+        },
+        {
+          "art": "MZ321233",
+          "brand": "Mitsubishi",
+          "name": "MZ321233|Масло моторное|Mitsubishi|GF-6A/SP|5W-30|Синтетическое|ОАЭ|3x4л",
+          "qty": 720
+        },
+        {
+          "art": "KLAP505304",
+          "brand": "NISSAN",
+          "name": "NISSAN SP STRONG SAVE X SAE 5W-30 (4лх6шт)",
+          "qty": 496
+        },
+        {
+          "art": "KLAN505301",
+          "brand": "NISSAN",
+          "name": "5W30 1L МАСЛО МОТОРНОЕ Strong Save X API: SP",
+          "qty": 120
         }
       ]
     }
