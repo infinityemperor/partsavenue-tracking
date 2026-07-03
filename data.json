@@ -1,5 +1,5 @@
 {
-  "updated_at": "02.07.2026 20:15",
+  "updated_at": "03.07.2026 12:54",
   "containers": [
     {
       "name": "UAE#4",
@@ -180,7 +180,7 @@
     },
     {
       "name": "UAE#7",
-      "status": "На таможне",
+      "status": "Доставлен",
       "ship_plan": "2026-05-01",
       "ship_fact": "2026-05-16",
       "arrival_plan": "2026-06-16",
@@ -188,12 +188,10 @@
       "customs_plan": "2026-06-25",
       "customs_fact": "2026-06-28",
       "warehouse_plan": "2026-06-30",
-      "warehouse_fact": null,
-      "delays": {
-        "warehouse": 2
-      },
+      "warehouse_fact": "2026-06-30",
+      "delays": {},
       "fpz_url": "files/UAE_007_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ_22.06.2026.xlsx",
-      "ffz_url": null,
+      "ffz_url": "files/UAE_007_ФФЗ_03.07.2026.xlsx",
       "items": [
         {
           "art": "0888681885",
