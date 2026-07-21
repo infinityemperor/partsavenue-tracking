@@ -1,5 +1,5 @@
 {
-  "updated_at": "16.07.2026 01:01",
+  "updated_at": "21.07.2026 15:11",
   "containers": [
     {
       "name": "UAE#4",
@@ -233,11 +233,11 @@
     },
     {
       "name": "UAE#8",
-      "status": "В пути",
+      "status": "Прибыл",
       "ship_plan": "2026-04-28",
       "ship_fact": "2026-05-05",
       "arrival_plan": "2028-07-18",
-      "arrival_fact": null,
+      "arrival_fact": "2026-07-20",
       "customs_plan": "2026-07-22",
       "customs_fact": null,
       "warehouse_plan": "2026-07-25",
@@ -262,11 +262,11 @@
     },
     {
       "name": "UAE#3",
-      "status": "В пути",
+      "status": "Прибыл",
       "ship_plan": "2026-06-19",
       "ship_fact": "2026-06-15",
       "arrival_plan": "2026-07-20",
-      "arrival_fact": null,
+      "arrival_fact": "2026-07-21",
       "customs_plan": "2026-07-23",
       "customs_fact": null,
       "warehouse_plan": "2026-07-26",
@@ -309,14 +309,14 @@
     },
     {
       "name": "UAE#9",
-      "status": "Прибыл",
+      "status": "На таможне",
       "ship_plan": "2026-05-23",
       "ship_fact": "2026-05-26",
       "arrival_plan": "2026-07-10",
       "arrival_fact": "2026-07-14",
       "customs_plan": "2026-07-17",
-      "customs_fact": null,
-      "warehouse_plan": "2026-07-18",
+      "customs_fact": "2026-07-17",
+      "warehouse_plan": "2026-07-23",
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE-009_ФПЗ_07.05.2026.xlsx",
@@ -335,7 +335,7 @@
       "status": "В пути",
       "ship_plan": "2026-06-26",
       "ship_fact": "2026-06-30",
-      "arrival_plan": "2026-07-24",
+      "arrival_plan": "2026-07-29",
       "arrival_fact": null,
       "customs_plan": "2026-07-25",
       "customs_fact": null,
@@ -490,7 +490,7 @@
       "warehouse_plan": "2026-08-17",
       "warehouse_fact": null,
       "delays": {
-        "ship": 10
+        "ship": 15
       },
       "fpz_url": "files/UAE-012_ФПЗ_24.06.2026.xlsx",
       "ffz_url": null,
