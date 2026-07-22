@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import json
 import shutil
 import hashlib
@@ -8,6 +9,15 @@ from datetime import datetime
 import openpyxl
 
 SVOD_PATH       = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\006 excel учет\СВОД _new.xlsm'
+
+# Путь к своду можно передать первым аргументом — так кнопка «Обновить трекинг»
+# из книги гонит данные именно из той книги, откуда её нажали.
+# Без аргумента поведение прежнее: берётся SVOD_PATH выше.
+if len(sys.argv) > 1 and sys.argv[1].strip():
+    SVOD_PATH = sys.argv[1].strip().strip('"')
+    if not os.path.exists(SVOD_PATH):
+        sys.exit(f'Не найден файл свода: {SVOD_PATH}')
+print(f'Свод: {SVOD_PATH}')
 CONTAINERS_ROOT = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\001 containers\2026\001 UAE'
 REPO_PATH       = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\007 container tracing'
 FILES_DIR       = os.path.join(REPO_PATH, 'files')
