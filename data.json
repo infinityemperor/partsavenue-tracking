@@ -1,5 +1,5 @@
 {
-  "updated_at": "21.07.2026 20:17",
+  "updated_at": "22.07.2026 19:53",
   "containers": [
     {
       "name": "UAE#4",
@@ -320,7 +320,7 @@
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE-009_ФПЗ_07.05.2026.xlsx",
-      "ffz_url": null,
+      "ffz_url": "files/UAE_009_ФФЗ_22.07.2026.xlsx",
       "items": [
         {
           "art": "0450000115",
@@ -490,7 +490,7 @@
       "warehouse_plan": "2026-08-17",
       "warehouse_fact": null,
       "delays": {
-        "ship": 15
+        "ship": 16
       },
       "fpz_url": "files/UAE-012_ФПЗ_24.06.2026.xlsx",
       "ffz_url": null,
@@ -553,6 +553,41 @@
           "brand": "NISSAN",
           "name": "5W30 1L МАСЛО МОТОРНОЕ Strong Save X API: SP",
           "qty": 120
+        }
+      ]
+    },
+    {
+      "name": "UAE#14",
+      "status": "Ожидает отправки",
+      "ship_plan": "2026-08-28",
+      "ship_fact": null,
+      "arrival_plan": "2026-09-21",
+      "arrival_fact": null,
+      "customs_plan": "2026-09-23",
+      "customs_fact": null,
+      "warehouse_plan": "2026-09-27",
+      "warehouse_fact": null,
+      "delays": {},
+      "fpz_url": "files/UAE_014_ФПЗ_14.07.2026.xlsx",
+      "ffz_url": null,
+      "items": [
+        {
+          "art": "0520000620",
+          "brand": "MOBIS",
+          "name": "Масло моторное синтетика Hyundai-KIA Premium DPF Diesel 5W-30 6 л.",
+          "qty": 3000
+        },
+        {
+          "art": "0510000141",
+          "brand": "MOBIS",
+          "name": "Масло моторное синтетика Hyundai-KIA Turbo SYN Gasoline 5W-30 1 л.",
+          "qty": 2808
+        },
+        {
+          "art": "043005L1A0",
+          "brand": "MOBIS",
+          "name": "Масло МКПП синтетика 75W-90 GL-4 1л.",
+          "qty": 2808
         }
       ]
     }
