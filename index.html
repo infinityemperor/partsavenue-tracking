@@ -86,6 +86,28 @@
     .item-brand { width: 84px; font-size: 11px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .item-qty   { width: 46px; font-size: 12px; font-weight: 600; text-align: right; color: #444; }
 
+    /* Календарь приходов на склад */
+    .cal-wrap { padding: 20px 28px 40px; overflow-x: auto; }
+    .cal-legend { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: #6b7a90; }
+    .cal-legend i { display: inline-block; width: 20px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+    .cal { width: 100%; min-width: 860px; border-collapse: separate; border-spacing: 0; background: white; border: 1px solid #e4e8f0; border-radius: 12px; overflow: hidden; }
+    .cal th { background: #eef1f6; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7a90; padding: 10px 8px; border-bottom: 1px solid #e4e8f0; }
+    .cal th.h-month { width: 140px; text-align: left; padding-left: 16px; }
+    .cal td { border-bottom: 1px solid #eef0f4; border-left: 1px solid #eef0f4; padding: 8px; vertical-align: top; height: 64px; width: 21.5%; }
+    .cal td.cal-month { border-left: none; }
+    .cal tr:last-child td { border-bottom: none; }
+    .cal-month { background: #fafbfd; font-size: 13px; font-weight: 700; padding-left: 16px !important; white-space: nowrap; }
+    .cal-month small { display: block; font-size: 11px; font-weight: 500; color: #aab2bd; margin-top: 3px; }
+    .cal-now { background: #fffdf3; box-shadow: inset 0 0 0 2px #f2c94c; }
+    .chip { display: block; border-radius: 7px; padding: 5px 9px; margin-bottom: 5px; font-size: 12px; font-weight: 700; }
+    .chip:last-child { margin-bottom: 0; }
+    .chip small { font-weight: 500; opacity: 0.8; margin-left: 5px; }
+    .chip-fact { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    .chip-plan { background: #f4f6fa; color: #5a6a80; border: 1px dashed #c3ccdb; }
+    .chip-late { background: #fdecea; color: #c62828; border: 1px solid #f3c4bf; }
+    .cal-nodate { margin-top: 16px; font-size: 13px; color: #8a94a6; }
+    .cal-nodate .chip { display: inline-block; margin: 4px 6px 0 0; }
+
     .empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #bbb; font-size: 15px; }
   </style>
 </head>
@@ -99,6 +121,7 @@
 <div class="tabs-bar">
   <button class="tab active" id="tab-active" onclick="showTab('active')">Активные <span id="cnt-active"></span></button>
   <button class="tab" id="tab-done" onclick="showTab('done')">Завершённые <span id="cnt-done"></span></button>
+  <button class="tab" id="tab-calendar" onclick="showTab('calendar')">Календарь приходов <span id="cnt-calendar"></span></button>
 </div>
 
 <div id="view"></div>
@@ -219,15 +242,125 @@
       </div>`;
   }
 
+  // ── Календарь приходов на склад ────────────────────────────────────────────
+  const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                  'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  const QUARTERS = ['1–7', '8–14', '15–21', '22–конец'];
+
+  // Парсим 'ГГГГ-ММ-ДД' вручную: new Date('2026-07-23') трактуется как UTC
+  // и для нашего +03:00 съезжает на день назад.
+  function parseISO(s) {
+    if (!s) return null;
+    const [y, m, d] = s.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  function quarterOf(day) {
+    return day <= 7 ? 0 : day <= 14 ? 1 : day <= 21 ? 2 : 3;
+  }
+
+  function renderCalendar() {
+    // только активные: доставленные в календарь приходов не попадают
+    const list = all.filter(c => c.status !== 'Доставлен');
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+
+    const cells = {};          // 'год-месяц' -> [[], [], [], []]
+    const noDate = [];
+    let min = null, max = null;
+
+    list.forEach(c => {
+      // дата прихода: факт, если уже случился, иначе план
+      const iso = c.warehouse_fact || c.warehouse_plan;
+      const d = parseISO(iso);
+      if (!d) { noDate.push(c); return; }
+      const key = d.getFullYear() + '-' + d.getMonth();
+      if (!cells[key]) cells[key] = [[], [], [], []];
+      cells[key][quarterOf(d.getDate())].push({ c, d, iso, fact: !!c.warehouse_fact });
+      if (!min || d < min) min = d;
+      if (!max || d > max) max = d;
+    });
+
+    if (!list.length) {
+      return '<div class="empty">Нет активных контейнеров</div>';
+    }
+    if (!min) {
+      return '<div class="empty">У активных контейнеров не заполнена дата склада</div>';
+    }
+
+    // диапазон месяцев: от первого до последнего прихода, но текущий месяц всегда внутри
+    let from = new Date(Math.min(min, today).valueOf());
+    let to   = new Date(Math.max(max, today).valueOf());
+    from = new Date(from.getFullYear(), from.getMonth(), 1);
+    to   = new Date(to.getFullYear(), to.getMonth(), 1);
+
+    const rows = [];
+    for (let m = new Date(from); m <= to; m.setMonth(m.getMonth() + 1)) {
+      const key = m.getFullYear() + '-' + m.getMonth();
+      const quarters = cells[key] || [[], [], [], []];
+      const total = quarters.reduce((s, q) => s + q.length, 0);
+      const isNowMonth = m.getFullYear() === today.getFullYear() && m.getMonth() === today.getMonth();
+      const nowQuarter = isNowMonth ? quarterOf(today.getDate()) : -1;
+
+      const tds = quarters.map((items, qi) => {
+        const chips = items
+          .sort((a, b) => a.d - b.d)
+          .map(({ c, d, iso, fact }) => {
+            let cls = 'chip-plan', hint = 'план: ' + fmtDate(iso);
+            if (fact) { cls = 'chip-fact'; hint = 'факт: ' + fmtDate(iso); }
+            else if (d < today) { cls = 'chip-late'; hint = 'план: ' + fmtDate(iso) + ' · просрочен'; }
+            const poz = c.items ? c.items.length : 0;
+            return `<span class="chip ${cls}" title="${c.name} · ${c.status} · ${hint}${poz ? ' · ' + poz + ' поз.' : ''}">
+                      ${c.name}<small>${fmtShort(iso)}</small>
+                    </span>`;
+          }).join('');
+        return `<td class="${qi === nowQuarter ? 'cal-now' : ''}">${chips}</td>`;
+      }).join('');
+
+      rows.push(`
+        <tr>
+          <td class="cal-month">${MONTHS[m.getMonth()]} ${m.getFullYear()}
+            <small>${total ? total + ' конт.' : '—'}</small>
+          </td>
+          ${tds}
+        </tr>`);
+    }
+
+    const nodate = noDate.length
+      ? `<div class="cal-nodate">Без даты склада:
+           ${noDate.map(c => `<span class="chip chip-plan">${c.name}</span>`).join('')}</div>`
+      : '';
+
+    return `
+      <div class="cal-wrap">
+        <div class="cal-legend">
+          <span><i class="chip-fact"></i>факт — уже на складе</span>
+          <span><i class="chip-plan"></i>план</span>
+          <span><i class="chip-late"></i>план просрочен</span>
+          <span>Дата прихода: факт склада, если есть, иначе план</span>
+        </div>
+        <table class="cal">
+          <tr>
+            <th class="h-month">Месяц</th>
+            ${QUARTERS.map(q => `<th>${q}</th>`).join('')}
+          </tr>
+          ${rows.join('')}
+        </table>
+        ${nodate}
+      </div>`;
+  }
+
   function showTab(t) {
     tab = t;
-    document.getElementById('tab-active').classList.toggle('active', t === 'active');
-    document.getElementById('tab-done').classList.toggle('active', t === 'done');
+    ['active', 'done', 'calendar'].forEach(x =>
+      document.getElementById('tab-' + x).classList.toggle('active', t === x));
     render();
   }
 
   function render() {
     const view = document.getElementById('view');
+    if (tab === 'calendar') {
+      view.innerHTML = renderCalendar();
+      return;
+    }
     if (tab === 'done') {
       const list = all.filter(c => c.status === 'Доставлен');
       view.innerHTML = `<div class="cards-grid">${
@@ -260,6 +393,7 @@
       document.getElementById('updated').textContent = 'Обновлено: ' + data.updated_at;
       document.getElementById('cnt-active').textContent = '(' + all.filter(c => c.status !== 'Доставлен').length + ')';
       document.getElementById('cnt-done').textContent   = '(' + all.filter(c => c.status === 'Доставлен').length + ')';
+      document.getElementById('cnt-calendar').textContent = '(' + all.filter(c => c.status !== 'Доставлен').length + ')';
       render();
     })
     .catch(() => {
