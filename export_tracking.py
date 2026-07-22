@@ -21,6 +21,7 @@ print(f'Свод: {SVOD_PATH}')
 CONTAINERS_ROOT = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\001 containers\2026\001 UAE'
 REPO_PATH       = r'C:\Users\zinov\OneDrive\Desktop\РАБОЧАЯ\001 ИМПОРТ\007 container tracing'
 FILES_DIR       = os.path.join(REPO_PATH, 'files')
+ARCHIVE_AFTER_DAYS = 30   # старше — не переиндексируем, берём из прошлого data.json
 
 
 def read_tracking():
@@ -169,11 +170,51 @@ def main():
     containers = read_tracking()
     output = []
 
+    # Контейнеры, приехавшие на склад больше ARCHIVE_AFTER_DAYS назад, «замораживаем»:
+    # даты и статус обновляем из Excel (это дёшево), а тяжёлое — сканирование папок,
+    # хеширование и копирование xlsx, чтение состава через openpyxl — пропускаем и
+    # берём из предыдущего data.json. Иначе на сотнях ящиков каждый деплой будет
+    # перемалывать весь архив.
+    прежние = {}
+    json_path = os.path.join(REPO_PATH, 'data.json')
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, encoding='utf-8') as f:
+                прежние = {c['name']: c for c in json.load(f).get('containers', [])}
+        except Exception as e:
+            print(f'Не удалось прочитать прежний data.json ({e}) — считаем всё заново')
+
+    сегодня = datetime.now()
+    заморожено = 0
+
     for c in containers:
         name = c['name']
         # Префикс для поиска файлов: UAE#5 -> UAE_005, UAE#6 -> UAE_006
         num = re.search(r'#(\d+)', name)
         file_prefix = f"UAE_{int(num.group(1)):03d}" if num else name.replace('#', '_')
+
+        # старый = на складе и прошло больше месяца
+        факт_склад = c['warehouse_fact']
+        старый = (isinstance(факт_склад, datetime)
+                  and (сегодня - факт_склад).days > ARCHIVE_AFTER_DAYS)
+
+        if старый and name in прежние:
+            прежний = прежние[name]
+            output.append({
+                **прежний,                       # fpz_url / ffz_url / items — как были
+                'status':         c['status'],   # даты и статус всё равно освежаем
+                'ship_plan':      fmt(c['ship_plan']),
+                'ship_fact':      fmt(c['ship_fact']),
+                'arrival_plan':   fmt(c['arrival_plan']),
+                'arrival_fact':   fmt(c['arrival_fact']),
+                'customs_plan':   fmt(c['customs_plan']),
+                'customs_fact':   fmt(c['customs_fact']),
+                'warehouse_plan': fmt(c['warehouse_plan']),
+                'warehouse_fact': fmt(c['warehouse_fact']),
+                'delays':         calc_delays(c),
+            })
+            заморожено += 1
+            continue
 
         folder = find_container_folder(name)
 
@@ -215,11 +256,11 @@ def main():
         'containers': output,
     }
 
-    json_path = os.path.join(REPO_PATH, 'data.json')
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f'\ndata.json готов — {len(output)} контейнеров')
+    print(f'\ndata.json готов — {len(output)} контейнеров '
+          f'(пересчитано {len(output) - заморожено}, заморожено {заморожено})')
 
     subprocess.run(['git', '-C', REPO_PATH, 'add', '-A'], check=True)
     result = subprocess.run(

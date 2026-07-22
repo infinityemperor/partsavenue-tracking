@@ -87,17 +87,22 @@
     .item-qty   { width: 46px; font-size: 12px; font-weight: 600; text-align: right; color: #444; }
 
     /* Календарь приходов на склад */
-    .cal-wrap { padding: 20px 28px 40px; overflow-x: auto; }
-    .cal-legend { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: #6b7a90; }
+    /* Вся вкладка занимает ровно один экран: строки месяцев равной высоты,
+       вертикальной прокрутки страницы нет. Переполнение уезжает внутрь ячейки. */
+    .cal-wrap { padding: 14px 28px 20px; display: flex; flex-direction: column;
+                height: calc(100vh - 148px); min-height: 340px; }
+    .cal-legend { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; font-size: 12px; color: #6b7a90; }
     .cal-legend i { display: inline-block; width: 20px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
-    .cal { width: 100%; min-width: 860px; border-collapse: separate; border-spacing: 0; background: white; border: 1px solid #e4e8f0; border-radius: 12px; overflow: hidden; }
-    .cal th { background: #eef1f6; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7a90; padding: 10px 8px; border-bottom: 1px solid #e4e8f0; }
-    .cal th.h-month { width: 140px; text-align: left; padding-left: 16px; }
-    .cal td { border-bottom: 1px solid #eef0f4; border-left: 1px solid #eef0f4; padding: 8px; vertical-align: top; height: 64px; width: 21.5%; }
-    .cal td.cal-month { border-left: none; }
-    .cal tr:last-child td { border-bottom: none; }
-    .cal-month { background: #fafbfd; font-size: 13px; font-weight: 700; padding-left: 16px !important; white-space: nowrap; }
-    .cal-month small { display: block; font-size: 11px; font-weight: 500; color: #aab2bd; margin-top: 3px; }
+    .cal-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 140px repeat(4, 1fr);
+                background: white; border: 1px solid #e4e8f0; border-radius: 12px; overflow: hidden; }
+    .cal-h { background: #eef1f6; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+             color: #6b7a90; padding: 9px 8px; border-bottom: 1px solid #e4e8f0; text-align: center; }
+    .cal-h.h-month { text-align: left; padding-left: 16px; }
+    .cal-cell { min-height: 0; overflow-y: auto; padding: 7px; border-bottom: 1px solid #eef0f4; border-left: 1px solid #eef0f4; }
+    .cal-month { min-height: 0; background: #fafbfd; font-size: 13px; font-weight: 700; padding: 8px 8px 8px 16px;
+                 border-bottom: 1px solid #eef0f4; white-space: nowrap; display: flex; flex-direction: column; justify-content: center; }
+    .cal-month small { font-size: 11px; font-weight: 500; color: #aab2bd; margin-top: 3px; }
+    .cal-row-last .cal-cell, .cal-row-last .cal-month { border-bottom: none; }
     .cal-now { background: #fffdf3; box-shadow: inset 0 0 0 2px #f2c94c; }
     .chip { display: block; border-radius: 7px; padding: 5px 9px; margin-bottom: 5px; font-size: 12px; font-weight: 700; }
     .chip:last-child { margin-bottom: 0; }
@@ -292,15 +297,20 @@
     from = new Date(from.getFullYear(), from.getMonth(), 1);
     to   = new Date(to.getFullYear(), to.getMonth(), 1);
 
-    const rows = [];
+    const months = [];
     for (let m = new Date(from); m <= to; m.setMonth(m.getMonth() + 1)) {
+      months.push(new Date(m));
+    }
+
+    const rows = months.map((m, ri) => {
+      const last = ri === months.length - 1 ? ' cal-row-last' : '';
       const key = m.getFullYear() + '-' + m.getMonth();
       const quarters = cells[key] || [[], [], [], []];
       const total = quarters.reduce((s, q) => s + q.length, 0);
       const isNowMonth = m.getFullYear() === today.getFullYear() && m.getMonth() === today.getMonth();
       const nowQuarter = isNowMonth ? quarterOf(today.getDate()) : -1;
 
-      const tds = quarters.map((items, qi) => {
+      const cellsHtml = quarters.map((items, qi) => {
         const chips = items
           .sort((a, b) => a.d - b.d)
           .map(({ c, d, iso, fact }) => {
@@ -312,17 +322,16 @@
                       ${c.name}<small>${fmtShort(iso)}</small>
                     </span>`;
           }).join('');
-        return `<td class="${qi === nowQuarter ? 'cal-now' : ''}">${chips}</td>`;
+        return `<div class="cal-cell${last}${qi === nowQuarter ? ' cal-now' : ''}">${chips}</div>`;
       }).join('');
 
-      rows.push(`
-        <tr>
-          <td class="cal-month">${MONTHS[m.getMonth()]} ${m.getFullYear()}
-            <small>${total ? total + ' конт.' : '—'}</small>
-          </td>
-          ${tds}
-        </tr>`);
-    }
+      return `
+        <div class="cal-month${last}">
+          <span>${MONTHS[m.getMonth()]} ${m.getFullYear()}</span>
+          <small>${total ? total + ' конт.' : '—'}</small>
+        </div>
+        ${cellsHtml}`;
+    });
 
     const nodate = noDate.length
       ? `<div class="cal-nodate">Без даты склада:
@@ -335,15 +344,12 @@
           <span><i class="chip-fact"></i>факт — уже на складе</span>
           <span><i class="chip-plan"></i>план</span>
           <span><i class="chip-late"></i>план просрочен</span>
-          <span>Дата прихода: факт склада, если есть, иначе план</span>
         </div>
-        <table class="cal">
-          <tr>
-            <th class="h-month">Месяц</th>
-            ${QUARTERS.map(q => `<th>${q}</th>`).join('')}
-          </tr>
+        <div class="cal-grid" style="grid-template-rows: auto repeat(${rows.length}, minmax(0, 1fr))">
+          <div class="cal-h h-month">Месяц</div>
+          ${QUARTERS.map(q => `<div class="cal-h">${q}</div>`).join('')}
           ${rows.join('')}
-        </table>
+        </div>
         ${nodate}
       </div>`;
   }

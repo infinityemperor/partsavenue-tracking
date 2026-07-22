@@ -1,5 +1,5 @@
 {
-  "updated_at": "22.07.2026 22:54",
+  "updated_at": "22.07.2026 23:09",
   "containers": [
     {
       "name": "UAE#4",
@@ -428,7 +428,7 @@
       "arrival_fact": null,
       "customs_plan": null,
       "customs_fact": null,
-      "warehouse_plan": null,
+      "warehouse_plan": "2026-08-31",
       "warehouse_fact": null,
       "delays": {},
       "fpz_url": "files/UAE_011_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
