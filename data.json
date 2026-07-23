@@ -1,5 +1,5 @@
 {
-  "updated_at": "22.07.2026 23:09",
+  "updated_at": "24.07.2026 02:27",
   "containers": [
     {
       "name": "UAE#4",
@@ -242,7 +242,9 @@
       "customs_fact": null,
       "warehouse_plan": "2026-07-25",
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "customs": 2
+      },
       "fpz_url": "files/UAE_008_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
       "ffz_url": null,
       "items": [
@@ -271,7 +273,9 @@
       "customs_fact": null,
       "warehouse_plan": "2026-07-26",
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "customs": 1
+      },
       "fpz_url": "files/UAE-003_ФПЗ_10.06.2026.xlsx",
       "ffz_url": null,
       "items": [
@@ -309,7 +313,7 @@
     },
     {
       "name": "UAE#9",
-      "status": "На таможне",
+      "status": "Доставлен",
       "ship_plan": "2026-05-23",
       "ship_fact": "2026-05-26",
       "arrival_plan": "2026-07-10",
@@ -317,7 +321,7 @@
       "customs_plan": "2026-07-17",
       "customs_fact": "2026-07-17",
       "warehouse_plan": "2026-07-23",
-      "warehouse_fact": null,
+      "warehouse_fact": "2026-07-24",
       "delays": {},
       "fpz_url": "files/UAE-009_ФПЗ_07.05.2026.xlsx",
       "ffz_url": "files/UAE_009_ФФЗ_22.07.2026.xlsx",
@@ -430,7 +434,9 @@
       "customs_fact": null,
       "warehouse_plan": "2026-08-31",
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "ship": 1
+      },
       "fpz_url": "files/UAE_011_ФПЗ_ПРЕДВАРИТЕЛЬНЫЙ.xlsx",
       "ffz_url": null,
       "items": [
@@ -490,7 +496,7 @@
       "warehouse_plan": "2026-08-17",
       "warehouse_fact": null,
       "delays": {
-        "ship": 16
+        "ship": 18
       },
       "fpz_url": "files/UAE-012_ФПЗ_24.06.2026.xlsx",
       "ffz_url": null,
@@ -514,7 +520,9 @@
       "customs_fact": null,
       "warehouse_plan": "2026-08-23",
       "warehouse_fact": null,
-      "delays": {},
+      "delays": {
+        "ship": 1
+      },
       "fpz_url": "files/UAE_013_ФПЗ_30.06.2026.xlsx",
       "ffz_url": null,
       "items": [
